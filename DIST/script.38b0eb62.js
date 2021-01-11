@@ -118,7 +118,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"JS/script.js":[function(require,module,exports) {
-console.log('hello world!');
+// Режим современного кода. 
+// Т.е. использование и применение элементов актуальной, современной версии.
+//Игноирование предупреждения.
+
+/* jshint -W033 */
+"use strict";
 },{}],"C:/Users/karpoyan/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -147,7 +152,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "11129" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "19126" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
