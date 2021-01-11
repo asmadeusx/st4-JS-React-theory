@@ -117,7 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"JS/index.js":[function(require,module,exports) {
+})({"JS/script.js":[function(require,module,exports) {
 console.log('hello world!');
 },{}],"C:/Users/karpoyan/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -147,7 +147,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "7574" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "11129" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -323,5 +323,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["C:/Users/karpoyan/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js","JS/index.js"], null)
-//# sourceMappingURL=/JS.46e07ea9.js.map
+},{}]},{},["C:/Users/karpoyan/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js","JS/script.js"], null)
+//# sourceMappingURL=/script.38b0eb62.js.map
