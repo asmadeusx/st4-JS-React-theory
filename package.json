@@ -1,0 +1,34 @@
+{
+  "name": "st4-js-react-theory",
+  "version": "1.0.0",
+  "description": "learning project for JS, React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build index.html --public-url ./",
+    "dev": "parcel index.html --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asmadeusx/st4-JS-React-theory.git"
+  },
+  "keywords": [
+    "js",
+    "react",
+    "html",
+    "css"
+  ],
+  "author": "Mikhail Karpoyan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/asmadeusx/st4-JS-React-theory/issues"
+  },
+  "homepage": "https://github.com/asmadeusx/st4-JS-React-theory#readme",
+  "devDependencies": {
+    "cssnano": "^4.1.10",
+    "sass": "^1.32.2",
+    "jshint": "^2.12.0"
+  },
+  "dependencies": {
+  }
+}
