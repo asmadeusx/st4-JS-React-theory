@@ -1,1 +1,1 @@
-{"version":3,"sources":["CSS\\style.scss"],"names":[],"mappings":"AAAA;EACI","file":"style.01d39460.css","sourceRoot":"..","sourcesContent":["h1{\r\n    color: red;\r\n}"]}
+{"version":3,"sources":["CSS\\style.scss"],"names":[],"mappings":"AAAA;EACI;EACA;EACA;EACA;EACA;;;AAEH;EACG","file":"style.01d39460.css","sourceRoot":"..","sourcesContent":[".style{\r\n    position: relative;\r\n    margin: 5px auto;\r\n    width: 500px;\r\n    height: 500px;\r\n    text-align: center;\r\n\r\n}.style h1{\r\n    color: red;\r\n}"]}
