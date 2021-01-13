@@ -164,7 +164,45 @@ var a = prompt('Один из последних просмотренных фи
     d = prompt('На сколько оцените его?', '');
 personalMovieDB.movies[a] = b;
 personalMovieDB.movies[c] = d;
-console.log(personalMovieDB);
+console.log(personalMovieDB); // 013 =================================================================
+// const num = 50;
+// if (num < 49) {
+//     console.log('Error');
+// } else if (num > 100) {
+//     console.log('Error To much');
+// } else {
+//     console.log('Ok!');
+// };
+// console.log('===========================================');
+// // (num === 50) - Строгое сравнивание, равна ли переменная num значению 50.
+// // ? - тернарый оператор. Если проверка - Истина, выполнить console.log('ok!')
+// // : - тернарный оператор. Если проверка - Ложь, выполнить console.log('error')
+// (num === 50) ? console.log('ok!') : console.log('error');
+// console.log('===========================================');
+
+var num = 10;
+
+switch (num) {
+  case 49:
+    console.log('num равен 49');
+    break;
+  // Выход из Switch
+
+  case 50:
+    console.log('num равен 50');
+    break;
+  // Выход из Switch
+
+  case 100:
+    console.log('num равен 100');
+    break;
+  // Выход из Switch
+
+  default:
+    console.log('Не попали в нужное значение');
+    break;
+  // Выход из Switch
+}
 },{}],"C:/Users/karpoyan/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
