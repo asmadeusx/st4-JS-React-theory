@@ -120,89 +120,72 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"JS/script.js":[function(require,module,exports) {
 /* Задание на урок:
 
-1) Создать переменную numberOfFilms и в неё поместить ответ 
-от пользователя на вопрос:
-'Сколько фильмов вы уже посмотрели?'
+1) Автоматизировать вопросы пользователю про фильмы при помощи цикла
 
-2) Создать объект personalMovieDB и в него поместить такие свойства:
-    - count - сюда передается ответ на первый вопрос
-    - movies - в это свойство поместить пустой объект
-    - actors - тоже поместить пустой объект
-    - genres - сюда поместить пустой массив
-    - privat - в это свойство поместить boolean(логическое) значение false
+2) Сделать так, чтобы пользователь не мог оставить ответ в виде пустой строки,
+отменить ответ или ввести название фильма длинее, чем 50 символов. 
+Если это происходит - возвращаем пользователя к вопросам опять
 
-3) Задайте пользователю по два раза вопросы:
-    - 'Один из последних просмотренных фильмов?'
-    - 'На сколько оцените его?'
-Ответы стоит поместить в отдельные переменные
-Записать ответы в объект movies в формате: 
-    movies: {
-        'logan': '8.1'
-    }
+3) При помощи условий проверить  personalMovieDB.count, 
+и если он меньше 10 - вывести сообщение "Просмотрено довольно мало фильмов", 
+если от 10 до 30 - "Вы классический зритель", а если больше - 
+"Вы киноман". А если не подошло ни к одному варианту - "Произошла ошибка"
 
-Проверить, чтобы все работало без ошибок в консоли */
+4) Потренироваться и переписать цикл еще двумя способами*/
 // Режим современного кода. 
 // Т.е. использование и применение элементов актуальной, современной версии.
 //Игноирование предупреждения.
 
 /* jshint -W033 */
-"use strict"; // #1
+"use strict";
 
-var numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', ""); // #2
-
+var numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', "");
 var personalMovieDB = {
   count: numberOfFilms,
   movies: {},
   actors: {},
   genres: [],
   privat: false
-}; // #3
+};
+var a = null,
+    b = null; // for ( let i = 0; i <= 2; i++ ) {
+//     a = prompt('Один из последних просмотренных фильмов?', '');
+//     b = prompt('На сколько оцените его?', '');
+//     if (a != null && b != null && a != '' && b != '' && a.length < 50) {
+//         personalMovieDB.movies[a] = b;
+//         console.log('Done');
+//     } else {
+//         console.log('error');
+//         i--;
+//     }   
+// }
 
-var a = prompt('Один из последних просмотренных фильмов?', ''),
-    b = prompt('На сколько оцените его?', ''),
-    c = prompt('Один из последних просмотренных фильмов?', ''),
-    d = prompt('На сколько оцените его?', '');
-personalMovieDB.movies[a] = b;
-personalMovieDB.movies[c] = d;
-console.log(personalMovieDB); // 013 =================================================================
-// const num = 50;
-// if (num < 49) {
-//     console.log('Error');
-// } else if (num > 100) {
-//     console.log('Error To much');
-// } else {
-//     console.log('Ok!');
-// };
-// console.log('===========================================');
-// // (num === 50) - Строгое сравнивание, равна ли переменная num значению 50.
-// // ? - тернарый оператор. Если проверка - Истина, выполнить console.log('ok!')
-// // : - тернарный оператор. Если проверка - Ложь, выполнить console.log('error')
-// (num === 50) ? console.log('ok!') : console.log('error');
-// console.log('===========================================');
+do {
+  a = prompt('Один из последних просмотренных фильмов?', '');
+  b = prompt('На сколько оцените его?', '');
 
-var num = 10;
+  if (a != null && b != null && a != '' && b != '' && a.length < 50) {
+    personalMovieDB.movies[a] = b;
+    console.log('Done');
+    personalMovieDB.count++;
+  } else {
+    console.log('error');
+    i--;
+  }
+} while (personalMovieDB.count <= 2);
 
-switch (num) {
-  case 49:
-    console.log('num равен 49');
-    break;
-  // Выход из Switch
-
-  case 50:
-    console.log('num равен 50');
-    break;
-  // Выход из Switch
-
-  case 100:
-    console.log('num равен 100');
-    break;
-  // Выход из Switch
-
-  default:
-    console.log('Не попали в нужное значение');
-    break;
-  // Выход из Switch
+if (personalMovieDB.count < 10) {
+  console.log("Просмотрено довольно мало фильмов");
+} else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+  console.log("Вы классический зритель");
+} else if (personalMovieDB.count >= 30) {
+  console.log("Вы киноман");
+} else {
+  console.log("Произошла ошибка");
 }
+
+console.log('Фильмов просмотрено = ' + personalMovieDB.count);
+console.log(personalMovieDB);
 },{}],"C:/Users/karpoyan/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -231,7 +214,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37038" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42759" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
