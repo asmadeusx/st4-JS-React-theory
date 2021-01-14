@@ -148,31 +148,48 @@ var personalMovieDB = {
   privat: false
 };
 var a = null,
-    b = null; // for ( let i = 0; i <= 2; i++ ) {
-//     a = prompt('Один из последних просмотренных фильмов?', '');
-//     b = prompt('На сколько оцените его?', '');
-//     if (a != null && b != null && a != '' && b != '' && a.length < 50) {
-//         personalMovieDB.movies[a] = b;
-//         console.log('Done');
-//     } else {
-//         console.log('error');
-//         i--;
-//     }   
-// }
+    b = null; // Вариант FOR
 
-do {
+for (var i = 1; i <= numberOfFilms; i++) {
   a = prompt('Один из последних просмотренных фильмов?', '');
   b = prompt('На сколько оцените его?', '');
 
   if (a != null && b != null && a != '' && b != '' && a.length < 50) {
     personalMovieDB.movies[a] = b;
     console.log('Done');
-    personalMovieDB.count++;
   } else {
     console.log('error');
     i--;
   }
-} while (personalMovieDB.count <= 2);
+} // Вариант WHILE
+// let i = 1;
+// while ( i <= numberOfFilms ) {
+//     a = prompt('Один из последних просмотренных фильмов?', '');
+//     b = prompt('На сколько оцените его?', '');
+//     if (a != null && b != null && a != '' && b != '' && a.length < 50) {
+//         personalMovieDB.movies[a] = b;
+//         console.log('Done');
+//         i++;
+//     } else {
+//         console.log('error');
+//         i--;
+//     }
+// }
+// Вариант DO-WHILE
+// let i = 1;
+// do {
+//     a = prompt('Один из последних просмотренных фильмов?', '');
+//     b = prompt('На сколько оцените его?', '');
+//     if (a != null && b != null && a != '' && b != '' && a.length < 50) {
+//         personalMovieDB.movies[a] = b;
+//         console.log('Done');
+//         i++;
+//     } else {
+//         console.log('error');
+//         i--;
+//     }
+// } while ( i <= numberOfFilms );
+
 
 if (personalMovieDB.count < 10) {
   console.log("Просмотрено довольно мало фильмов");
@@ -185,7 +202,6 @@ if (personalMovieDB.count < 10) {
 }
 
 console.log('Фильмов просмотрено = ' + personalMovieDB.count);
-console.log(personalMovieDB);
 },{}],"C:/Users/karpoyan/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -214,7 +230,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42759" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58415" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
