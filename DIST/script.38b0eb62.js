@@ -118,45 +118,101 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"JS/script.js":[function(require,module,exports) {
-/* jshint -W033 */
-"use strict";
+'user strict';
+/* Задание на урок:
 
-var str = 'hello world';
-var arr = [1, 2, 3, 4, 5]; // Свойство length возвращает количество символов и/или элементов.
+1) Первую часть задания повторить по уроку
 
-console.log(arr.length); // Метод для преобразования значений строчной переменной в верхний регистр
+2) Создать функцию showMyDB, которая будет проверять свойство privat. 
+Если стоит в позиции false - выводит в консоль главный объект программы
 
-console.log(str.toUpperCase()); // Метод для поиска индекса, т.е. с какого места начинается искомый элемент строки
+3) Создать функцию writeYourGenres в которой пользователь будет 3 раза отвечать 
+на вопрос "Ваш любимый жанр под номером ${номер по порядку}". 
+Каждый ответ записывается в массив данных genres
 
-var fruit = "some fruit";
-console.log(fruit.indexOf("fruit"));
-console.log(fruit.indexOf("q")); // Метод поиска и выреза нужного элемента.
-// Первый аргумент - с какого символа начать
-// Второй аргумент - до какого символа считать, включая последний символ
-// Счет СЛЕВА-НАПРАВО. Результат world.
+P.S. Функции вызывать не обязательно*/
 
-var logg = "Hello world";
-console.log(logg.slice(6, 11)); // Счет СПРАВО-НАЛЕВО. Результат Hello.
+var personalMovieDB = {
+  count: {},
+  movies: {},
+  actors: {},
+  genres: [],
+  privat: false
+};
 
-var loggrev = "Hello world";
-console.log(loggrev.slice(-11, -6)); // Метод, который аналогичен Slice.
-// Не поддерживает отрицательные значения.
+function start() {
+  personalMovieDB.count = prompt('Сколько фильмов вы уже посмотрели?', "");
 
-console.log(logg.substring(6, 11)); // Метод, str.
-// Первый аргумент - с какого символа начать
-// Второй аргумент - сколько вырезать символов
-// Результат world.
+  while (personalMovieDB.count == '' || personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
+    alert('Error. Ответ должен быть числом, и не может быть пустым');
+    personalMovieDB.count = prompt('Сколько фильмов вы уже посмотрели?', "");
+  }
+}
 
-console.log(logg.substr(6, 5)); // Числовые методы.
+function rememberMyFilms() {
+  for (var i = 1; i <= personalMovieDB.count; i++) {
+    var a = null,
+        b = null;
+    a = prompt('Один из последних просмотренных фильмов?', '');
+    b = prompt('На сколько оцените его?', '');
 
-var num = 12.2;
-var test = '12.2px'; // Метод округления до целого.
+    if (a != null && b != null && a != '' && b != '' && a.length < 50) {
+      personalMovieDB.movies[a] = b;
+      console.log('Done');
+    } else {
+      console.log('error');
+      i--;
+    }
+  }
+}
 
-console.log(Math.round(num)); // Метод преобразования числа в другую систему исчисления. Целое значение.
+function detectPersonalLevel() {
+  if (personalMovieDB.count < 10) {
+    console.log("Просмотрено довольно мало фильмов");
+  } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+    console.log("Вы классический зритель");
+  } else if (personalMovieDB.count >= 30) {
+    console.log("Вы киноман");
+  } else {
+    console.log("Произошла ошибка");
+  }
+}
 
-console.log(parseInt(test)); // Метод преобразования числа в другую систему исчисления. С плавающей точкой.
+function writeYourGenres() {
+  var genreNum = 1;
 
-console.log(parseFloat(test));
+  for (var i = 1; i <= 3; i++) {
+    personalMovieDB.genres[i - 1] = i + ". " + prompt("\u0412\u0430\u0448 \u043B\u044E\u0431\u0438\u043C\u044B\u0439 \u0436\u0430\u043D\u0440 \u043F\u043E\u0434 \u043D\u043E\u043C\u0435\u0440\u043E\u043C ".concat(i, "?"));
+  }
+}
+
+function showMyDB() {
+  var q = 'Показать всем вашу кинобазу? Да или Нет?';
+  var a = prompt(q, '');
+
+  while (a != 'Да' || a != 'да' || a != 'Нет' || a != 'нет') {
+    alert('Не верный ответ! Повторите ввод!');
+    a = prompt(q, '');
+  }
+
+  if (a == 'Да' || a == 'да') {
+    personalMovieDB.privat = false;
+  } else {
+    personalMovieDB.privat = true;
+  }
+} // Решение Преподователя курса
+// function showMyDB(hidden) {
+//     if (!hidden) {
+//         console.log(personalMovieDB);
+//     }
+// }
+
+
+start();
+rememberMyFilms();
+detectPersonalLevel();
+writeYourGenres();
+showMyDB(); // showMyDB(personalMovieDB.privat); // Решение Преподователя курса
 },{}],"C:/Users/karpoyan/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -185,7 +241,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59563" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1609" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
