@@ -118,90 +118,34 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"JS/script.js":[function(require,module,exports) {
-/* Задание на урок:
-
-1) Автоматизировать вопросы пользователю про фильмы при помощи цикла
-
-2) Сделать так, чтобы пользователь не мог оставить ответ в виде пустой строки,
-отменить ответ или ввести название фильма длинее, чем 50 символов. 
-Если это происходит - возвращаем пользователя к вопросам опять
-
-3) При помощи условий проверить  personalMovieDB.count, 
-и если он меньше 10 - вывести сообщение "Просмотрено довольно мало фильмов", 
-если от 10 до 30 - "Вы классический зритель", а если больше - 
-"Вы киноман". А если не подошло ни к одному варианту - "Произошла ошибка"
-
-4) Потренироваться и переписать цикл еще двумя способами*/
-// Режим современного кода. 
-// Т.е. использование и применение элементов актуальной, современной версии.
-//Игноирование предупреждения.
-
 /* jshint -W033 */
-"use strict";
+"use strict"; // Function Declaration
+// Можно сначала вызвать, а потом огласить и создать
 
-var numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', "");
-var personalMovieDB = {
-  count: numberOfFilms,
-  movies: {},
-  actors: {},
-  genres: [],
-  privat: false
-};
-var a = null,
-    b = null; // Вариант FOR
-
-for (var i = 1; i <= numberOfFilms; i++) {
-  a = prompt('Один из последних просмотренных фильмов?', '');
-  b = prompt('На сколько оцените его?', '');
-
-  if (a != null && b != null && a != '' && b != '' && a.length < 50) {
-    personalMovieDB.movies[a] = b;
-    console.log('Done');
-  } else {
-    console.log('error');
-    i--;
-  }
-} // Вариант WHILE
-// let i = 1;
-// while ( i <= numberOfFilms ) {
-//     a = prompt('Один из последних просмотренных фильмов?', '');
-//     b = prompt('На сколько оцените его?', '');
-//     if (a != null && b != null && a != '' && b != '' && a.length < 50) {
-//         personalMovieDB.movies[a] = b;
-//         console.log('Done');
-//         i++;
-//     } else {
-//         console.log('error');
-//         i--;
-//     }
-// }
-// Вариант DO-WHILE
-// let i = 1;
-// do {
-//     a = prompt('Один из последних просмотренных фильмов?', '');
-//     b = prompt('На сколько оцените его?', '');
-//     if (a != null && b != null && a != '' && b != '' && a.length < 50) {
-//         personalMovieDB.movies[a] = b;
-//         console.log('Done');
-//         i++;
-//     } else {
-//         console.log('error');
-//         i--;
-//     }
-// } while ( i <= numberOfFilms );
-
-
-if (personalMovieDB.count < 10) {
-  console.log("Просмотрено довольно мало фильмов");
-} else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
-  console.log("Вы классический зритель");
-} else if (personalMovieDB.count >= 30) {
-  console.log("Вы киноман");
-} else {
-  console.log("Произошла ошибка");
+function calc(a, b) {
+  return a + b;
 }
 
-console.log('Фильмов просмотрено = ' + personalMovieDB.count);
+console.log(calc(5, 5), +" " + calc(2, 8)); // Function Expression
+// Нельзя сначала вызвать, а потом огласить и создать.
+
+var logger = function logger() {
+  console.log('hello');
+};
+
+logger(); // Стрелочная функция
+// Сокращенный вариант
+
+var calc2 = function calc2(a, b) {
+  return a + b;
+}; // Классический вариант
+
+
+var calc3 = function calc3(a, b) {
+  console.log(a + ' ' + b);
+};
+
+calc3(2, 5);
 },{}],"C:/Users/karpoyan/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -230,7 +174,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58415" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58673" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
