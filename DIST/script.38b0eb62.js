@@ -119,33 +119,44 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"JS/script.js":[function(require,module,exports) {
 /* jshint -W033 */
-"use strict"; // Function Declaration
-// Можно сначала вызвать, а потом огласить и создать
+"use strict";
 
-function calc(a, b) {
-  return a + b;
-}
+var str = 'hello world';
+var arr = [1, 2, 3, 4, 5]; // Свойство length возвращает количество символов и/или элементов.
 
-console.log(calc(5, 5), +" " + calc(2, 8)); // Function Expression
-// Нельзя сначала вызвать, а потом огласить и создать.
+console.log(arr.length); // Метод для преобразования значений строчной переменной в верхний регистр
 
-var logger = function logger() {
-  console.log('hello');
-};
+console.log(str.toUpperCase()); // Метод для поиска индекса, т.е. с какого места начинается искомый элемент строки
 
-logger(); // Стрелочная функция
-// Сокращенный вариант
+var fruit = "some fruit";
+console.log(fruit.indexOf("fruit"));
+console.log(fruit.indexOf("q")); // Метод поиска и выреза нужного элемента.
+// Первый аргумент - с какого символа начать
+// Второй аргумент - до какого символа считать, включая последний символ
+// Счет СЛЕВА-НАПРАВО. Результат world.
 
-var calc2 = function calc2(a, b) {
-  return a + b;
-}; // Классический вариант
+var logg = "Hello world";
+console.log(logg.slice(6, 11)); // Счет СПРАВО-НАЛЕВО. Результат Hello.
 
+var loggrev = "Hello world";
+console.log(loggrev.slice(-11, -6)); // Метод, который аналогичен Slice.
+// Не поддерживает отрицательные значения.
 
-var calc3 = function calc3(a, b) {
-  console.log(a + ' ' + b);
-};
+console.log(logg.substring(6, 11)); // Метод, str.
+// Первый аргумент - с какого символа начать
+// Второй аргумент - сколько вырезать символов
+// Результат world.
 
-calc3(2, 5);
+console.log(logg.substr(6, 5)); // Числовые методы.
+
+var num = 12.2;
+var test = '12.2px'; // Метод округления до целого.
+
+console.log(Math.round(num)); // Метод преобразования числа в другую систему исчисления. Целое значение.
+
+console.log(parseInt(test)); // Метод преобразования числа в другую систему исчисления. С плавающей точкой.
+
+console.log(parseFloat(test));
 },{}],"C:/Users/karpoyan/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -174,7 +185,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58673" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59563" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
