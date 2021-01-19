@@ -121,98 +121,80 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 'user strict';
 /* Задание на урок:
 
-1) Первую часть задания повторить по уроку
+1) У нас уже есть рабочее приложение, состоящее из отдельных функций. Представьте, что
+перед вами стоит задача переписать его так, чтобы все функции стали методами объекта personalMovieDB
+Такое случается в реальных продуктах при смене технологий или подхода к архитектуре программы
 
-2) Создать функцию showMyDB, которая будет проверять свойство privat. 
-Если стоит в позиции false - выводит в консоль главный объект программы
+2) Создать метод toggleVisibleMyDB, который при вызове будет проверять свойство privat. Если оно false - он
+переключает его в true, если true - переключает в false. Протестировать вместе с showMyDB.
 
-3) Создать функцию writeYourGenres в которой пользователь будет 3 раза отвечать 
-на вопрос "Ваш любимый жанр под номером ${номер по порядку}". 
-Каждый ответ записывается в массив данных genres
-
-P.S. Функции вызывать не обязательно*/
+3) В методе writeYourGenres запретить пользователю нажать кнопку "отмена" или оставлять пустую строку. 
+Если он это сделал - возвращать его к этому же вопросу. После того, как все жанры введены - 
+при помощи метода forEach вывести в консоль сообщения в таком виде:
+"Любимый жанр #(номер по порядку, начиная с 1) - это (название из массива)"*/
 
 var personalMovieDB = {
-  count: {},
+  count: 0,
   movies: {},
   actors: {},
   genres: [],
-  privat: false
-};
-
-function start() {
-  personalMovieDB.count = prompt('Сколько фильмов вы уже посмотрели?', "");
-
-  while (personalMovieDB.count == '' || personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
-    alert('Error. Ответ должен быть числом, и не может быть пустым');
+  privat: true,
+  start: function start() {
     personalMovieDB.count = prompt('Сколько фильмов вы уже посмотрели?', "");
-  }
-}
 
-function rememberMyFilms() {
-  for (var i = 1; i <= personalMovieDB.count; i++) {
-    var a = null,
-        b = null;
-    a = prompt('Один из последних просмотренных фильмов?', '');
-    b = prompt('На сколько оцените его?', '');
+    while (personalMovieDB.count == '' || personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
+      alert('Error. Ответ должен быть числом, и не может быть пустым');
+      personalMovieDB.count = prompt('Сколько фильмов вы уже посмотрели?', "");
+    }
+  },
+  rememberMyFilms: function rememberMyFilms() {
+    for (var i = 1; i <= personalMovieDB.count; i++) {
+      var a = null,
+          b = null;
+      a = prompt('Один из последних просмотренных фильмов?', '');
+      b = prompt('На сколько оцените его?', '');
 
-    if (a != null && b != null && a != '' && b != '' && a.length < 50) {
-      personalMovieDB.movies[a] = b;
-      console.log('Done');
+      if (a != null && b != null && a != '' && b != '' && a.length < 50) {
+        personalMovieDB.movies[a] = b;
+        console.log('Done');
+      } else {
+        console.log('error');
+        i--;
+      }
+    }
+  },
+  detectPersonalLevel: function detectPersonalLevel() {
+    if (personalMovieDB.count < 10) {
+      console.log("Просмотрено довольно мало фильмов");
+    } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+      console.log("Вы классический зритель");
+    } else if (personalMovieDB.count >= 30) {
+      console.log("Вы киноман");
     } else {
-      console.log('error');
-      i--;
+      console.log("Произошла ошибка");
+    }
+  },
+  writeYourGenres: function writeYourGenres() {
+    for (var i = 1; i <= 3; i++) {
+      personalMovieDB.genres[i - 1] = i + ". " + prompt("\u0412\u0430\u0448 \u043B\u044E\u0431\u0438\u043C\u044B\u0439 \u0436\u0430\u043D\u0440 \u043F\u043E\u0434 \u043D\u043E\u043C\u0435\u0440\u043E\u043C ".concat(i, "?"));
+    }
+  },
+  toggleVisibleMyDB: function toggleVisibleMyDB() {
+    /* jshint -W030 */
+    personalMovieDB.privat == false ? personalMovieDB.privat = true : personalMovieDB.privat = false;
+    /* jshint +W030 */
+  },
+  showMyDB: function showMyDB(hidden) {
+    if (!hidden) {
+      console.log(personalMovieDB);
     }
   }
-}
-
-function detectPersonalLevel() {
-  if (personalMovieDB.count < 10) {
-    console.log("Просмотрено довольно мало фильмов");
-  } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
-    console.log("Вы классический зритель");
-  } else if (personalMovieDB.count >= 30) {
-    console.log("Вы киноман");
-  } else {
-    console.log("Произошла ошибка");
-  }
-}
-
-function writeYourGenres() {
-  var genreNum = 1;
-
-  for (var i = 1; i <= 3; i++) {
-    personalMovieDB.genres[i - 1] = i + ". " + prompt("\u0412\u0430\u0448 \u043B\u044E\u0431\u0438\u043C\u044B\u0439 \u0436\u0430\u043D\u0440 \u043F\u043E\u0434 \u043D\u043E\u043C\u0435\u0440\u043E\u043C ".concat(i, "?"));
-  }
-}
-
-function showMyDB() {
-  var q = 'Показать всем вашу кинобазу? Да или Нет?';
-  var a = prompt(q, '');
-
-  while (a != 'Да' || a != 'да' || a != 'Нет' || a != 'нет') {
-    alert('Не верный ответ! Повторите ввод!');
-    a = prompt(q, '');
-  }
-
-  if (a == 'Да' || a == 'да') {
-    personalMovieDB.privat = false;
-  } else {
-    personalMovieDB.privat = true;
-  }
-} // Решение Преподователя курса
-// function showMyDB(hidden) {
-//     if (!hidden) {
-//         console.log(personalMovieDB);
-//     }
-// }
-
-
-start();
-rememberMyFilms();
-detectPersonalLevel();
-writeYourGenres();
-showMyDB(); // showMyDB(personalMovieDB.privat); // Решение Преподователя курса
+}; // personalMovieDB.start();
+// personalMovieDB.rememberMyFilms();
+// personalMovieDB.detectPersonalLevel();
+// personalMovieDB.writeYourGenres();
+// personalMovieDB.toggleVisibleMyDB();
+// personalMovieDB.showMyDB(personalMovieDB.privat);
 },{}],"C:/Users/karpoyan/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -241,7 +223,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1609" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "23124" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
