@@ -118,7 +118,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"JS/script.js":[function(require,module,exports) {
-'user strict';
+'use strict';
 /* Задание на урок:
 
 1) У нас уже есть рабочее приложение, состоящее из отдельных функций. Представьте, что
@@ -138,7 +138,7 @@ var personalMovieDB = {
   movies: {},
   actors: {},
   genres: [],
-  privat: true,
+  privat: false,
   start: function start() {
     personalMovieDB.count = prompt('Сколько фильмов вы уже посмотрели?', "");
 
@@ -176,8 +176,19 @@ var personalMovieDB = {
   },
   writeYourGenres: function writeYourGenres() {
     for (var i = 1; i <= 3; i++) {
-      personalMovieDB.genres[i - 1] = i + ". " + prompt("\u0412\u0430\u0448 \u043B\u044E\u0431\u0438\u043C\u044B\u0439 \u0436\u0430\u043D\u0440 \u043F\u043E\u0434 \u043D\u043E\u043C\u0435\u0440\u043E\u043C ".concat(i, "?"));
+      var genre = prompt("\u0412\u0430\u0448 \u043B\u044E\u0431\u0438\u043C\u044B\u0439 \u0436\u0430\u043D\u0440 \u043F\u043E\u0434 \u043D\u043E\u043C\u0435\u0440\u043E\u043C ".concat(i, "?"));
+
+      if (genre == '' || genre == null) {
+        console.log('Вы ввели некорректные данные, или не ввели их вообще');
+        i--;
+      } else {
+        personalMovieDB.genres[i - 1] = genre;
+      }
     }
+
+    personalMovieDB.genres.forEach(function (item, i) {
+      console.log("\u041B\u044E\u0431\u0438\u043C\u044B\u0439 \u0436\u0430\u043D\u0440 \u2116".concat(i + 1, " - \u044D\u0442\u043E ").concat(item));
+    });
   },
   toggleVisibleMyDB: function toggleVisibleMyDB() {
     /* jshint -W030 */
@@ -223,7 +234,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "23124" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "27800" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
