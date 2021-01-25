@@ -118,111 +118,59 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"JS/script.js":[function(require,module,exports) {
-'use strict';
-/* Задание на урок:
+'use strict'; // 027 - Задачи с собеседований на понимание основ
+// 1•	Какое будет выведено значение: 
+// let x = 5;
+// alert(x++);
+// Ответ 5.
+// 2•	Чему равно такое выражение: [ ] + false - null + true;
+// [ ] - пустой массив - Истина
+// null - ложь
+// true + false - false + true; 
+// let ans = Boolean(true + false - false + true);
+// console.log(ans);
+// Ответ True.
+// 3•	Что выведет этот код: let y = 1; let x = y = 2; alert(x); ?
+// let y = 1; let x = y = 2; alert(x);
+// Ответ 2;
+// 4•	Чему равна сумма [ ] + 1 + 2?
+// Ответ 12;
+// let m = [ ];
+// let n = 1 + 2;
+// let y = [ ] + 1 + 2;
+// let z = { } + 1 + 2;
+// console.log(typeof(m));
+// console.log(typeof(n));
+// console.log(typeof(y));
+// console.log(typeof(z));
+// 5•	Что выведет этот код: alert( "1"[0] )?
+// Ответ 1
+// 6•	Чему равно 2 && 1 && null && 0 && undefined ?
+// 2 && 1 && null && 0 && undefined
+// true && true && false && false && false
+// Ответ null; 
+// console.log(2 && 1 && null && 0 && undefined);
+// 7•	Есть ли разница между выражениями? !!( a && b ) и (a && b)?
+// Ответ Да, первое с динамическим преобразованием в логический элемент, а второе нет.
+// let a = 1,
+//     b = 'true';
+// let x = !!(a && b),
+//     y = (a && b);
+// console.log(typeof(x));
+// console.log(typeof(y));
+// 8•	Что выведет этот код: alert( null || 2 && 3 || 4 ); ?
+// Ответ 3
+// 9•	a = [1, 2, 3]; b = [1, 2, 3]; Правда ли что a == b ?
+// Ответ Истина
 
-1) У нас уже есть рабочее приложение, состоящее из отдельных функций. Представьте, что
-перед вами стоит задача переписать его так, чтобы все функции стали методами объекта personalMovieDB
-Такое случается в реальных продуктах при смене технологий или подхода к архитектуре программы
+var a = [1, 2, 3],
+    b = [1, 2, 3];
 
-2) Создать метод toggleVisibleMyDB, который при вызове будет проверять свойство privat. Если оно false - он
-переключает его в true, если true - переключает в false. Протестировать вместе с showMyDB.
-
-3) В методе writeYourGenres запретить пользователю нажать кнопку "отмена" или оставлять пустую строку. 
-Если он это сделал - возвращать его к этому же вопросу. После того, как все жанры введены - 
-при помощи метода forEach вывести в консоль сообщения в таком виде:
-"Любимый жанр #(номер по порядку, начиная с 1) - это (название из массива)"*/
-
-var personalMovieDB = {
-  count: 0,
-  movies: {},
-  actors: {},
-  genres: [],
-  privat: false,
-  start: function start() {
-    personalMovieDB.count = prompt('Сколько фильмов вы уже посмотрели?', "");
-
-    while (personalMovieDB.count == '' || personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
-      alert('Error. Ответ должен быть числом, и не может быть пустым');
-      personalMovieDB.count = prompt('Сколько фильмов вы уже посмотрели?', "");
-    }
-  },
-  rememberMyFilms: function rememberMyFilms() {
-    for (var i = 1; i <= personalMovieDB.count; i++) {
-      var a = null,
-          b = null;
-      a = prompt('Один из последних просмотренных фильмов?', '');
-      b = prompt('На сколько оцените его?', '');
-
-      if (a != null && b != null && a != '' && b != '' && a.length < 50) {
-        personalMovieDB.movies[a] = b;
-        console.log('Done');
-      } else {
-        console.log('error');
-        i--;
-      }
-    }
-  },
-  detectPersonalLevel: function detectPersonalLevel() {
-    if (personalMovieDB.count < 10) {
-      console.log("Просмотрено довольно мало фильмов");
-    } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
-      console.log("Вы классический зритель");
-    } else if (personalMovieDB.count >= 30) {
-      console.log("Вы киноман");
-    } else {
-      console.log("Произошла ошибка");
-    }
-  },
-  writeYourGenres: function writeYourGenres() {
-    // Вариант №1
-    // for (let i = 1; i <= 3; i++) { 
-    //     let genre = prompt(`Ваш любимый жанр под номером ${i}?`);
-    //     if (genre == '' || genre == null) {
-    //         console.log('Вы ввели некорректные данные, или не ввели их вообще');
-    //         i--;
-    //     } else {
-    //         personalMovieDB.genres[i - 1] = genre;
-    //     }
-    // }
-    // personalMovieDB.genres.forEach((item, i) => {
-    //     console.log(`Любимый жанр №${i + 1} - это ${item}`);
-    // });
-    // Вариант №2
-    for (var i = 1; i < 2; i++) {
-      var genres = prompt("\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0432\u0430\u0448\u0438 \u043B\u044E\u0431\u0438\u043C\u044B\u0435 \u0436\u0430\u043D\u0440\u044B \u0447\u0435\u0440\u0435\u0437 \u0437\u0430\u043F\u044F\u0442\u0443\u044E");
-
-      if (genres == '' || genres == null) {
-        console.log('Вы ввели некорректные данные, или не ввели их вообще');
-        i--;
-      } else {
-        personalMovieDB.genres = genres.split(', ');
-        personalMovieDB.genres.sort();
-      }
-
-      personalMovieDB.genres.forEach(function (item, i) {
-        console.log("\u041B\u044E\u0431\u0438\u043C\u044B\u0439 \u0436\u0430\u043D\u0440 ".concat(i + 1, " - \u044D\u0442\u043E ").concat(item));
-      });
-    }
-  },
-  toggleVisibleMyDB: function toggleVisibleMyDB() {
-    /* jshint -W030 */
-    personalMovieDB.privat == false ? personalMovieDB.privat = true : personalMovieDB.privat = false;
-    /* jshint +W030 */
-  },
-  showMyDB: function showMyDB(hidden) {
-    if (!hidden) {
-      console.log(personalMovieDB);
-    }
-  }
-}; // personalMovieDB.start();
-// personalMovieDB.rememberMyFilms();
-// personalMovieDB.detectPersonalLevel();
-// personalMovieDB.writeYourGenres();
-// personalMovieDB.toggleVisibleMyDB();
-// personalMovieDB.showMyDB(personalMovieDB.privat);
-
-window.personalMovieDB = personalMovieDB;
+if (a == b) {
+  console.log('True');
+} else {
+  console.log('False');
+}
 },{}],"C:/Users/karpoyan/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -251,7 +199,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "30469" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "23882" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
