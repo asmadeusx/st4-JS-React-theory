@@ -124,12 +124,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 // alert(x++);
 // Ответ 5.
 // 2•	Чему равно такое выражение: [ ] + false - null + true;
-// [ ] - пустой массив - Истина
-// null - ложь
-// true + false - false + true; 
-// let ans = Boolean(true + false - false + true);
-// console.log(ans);
-// Ответ True.
+// Ответ NaN.
 // 3•	Что выведет этот код: let y = 1; let x = y = 2; alert(x); ?
 // let y = 1; let x = y = 2; alert(x);
 // Ответ 2;
@@ -161,16 +156,31 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 // 8•	Что выведет этот код: alert( null || 2 && 3 || 4 ); ?
 // Ответ 3
 // 9•	a = [1, 2, 3]; b = [1, 2, 3]; Правда ли что a == b ?
-// Ответ Истина
-
-var a = [1, 2, 3],
-    b = [1, 2, 3];
-
-if (a == b) {
-  console.log('True');
-} else {
-  console.log('False');
-}
+// Ответ Ложь. Т.к. Массив - это объект. Сравнивабтся Объекты, а не их элементы. 
+// Объекты по ссылкам сравниваются. разные объекты, разные ссылки.
+// let a = [1, 2, 3],
+//     b = [1, 2, 3];
+// if (a == b) {
+//     console.log('True');
+// } else {
+//     console.log('False');
+// }
+// 10•	Что выведет этот код: alert( +"Infinity" ); ?
+// Унарный плюс. Автоматически преобразует строку в число. 
+// Однако, Infinity - это бесконечность. Зарезервированная переменная.
+// Ответ слово Infinity. Используется, например, для сравнения чисел и т.п..
+// alert( +"Infinity" );
+// 11•	Верно ли сравнение: "Ёжик" > "яблоко"?
+// Алгоритм сравнения двух строк довольно прост:
+// Сначала сравниваются первые символы строк.
+// Если первый символ первой строки больше (меньше), чем первый символ второй, то первая строка больше (меньше) второй. Сравнение завершено.
+// Если первые символы равны, то таким же образом сравниваются уже вторые символы строк.
+// Сравнение продолжается, пока не закончится одна из строк.
+// Если обе строки заканчиваются одновременно, то они равны. Иначе, большей считается более длинная строка.
+// Ответ false
+// 12•	Чему равно 0 || "" || 2 || undefined || true || falsе ?
+// Логическое Или. Если хотябы одно значение Истина - результат Истиниа.
+// Ответ 2
 },{}],"C:/Users/karpoyan/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -199,7 +209,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "23882" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33091" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
