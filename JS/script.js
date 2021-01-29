@@ -12,6 +12,13 @@ btns[1].style.backgroundColor = 'green';
 btns[1].style.borderRadius = '100%';
 circles[0].style.backgroundColor = 'red';
 
-for (let i = 0; i < hearts; i++) {
+console.log(hearts);
+
+for (let i = 0; i < hearts.length; i++) {
     hearts[i].style.backgroundColor = 'green';
 }
+
+// Вариант Николая Fargard'а Селезнева
+// for (const heart of hearts) {
+//     heart.style.backgroundColor = 'green';
+// }     

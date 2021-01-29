@@ -131,11 +131,15 @@ box.style.cssText = 'background-color: green; width: 200px';
 btns[1].style.backgroundColor = 'green';
 btns[1].style.borderRadius = '100%';
 circles[0].style.backgroundColor = 'red';
+console.log(hearts);
 
-for (var i = 0; i < hearts; i++) {
+for (var i = 0; i < hearts.length; i++) {
   hearts[i].style.backgroundColor = 'green';
-}
-},{}],"C:/Users/karpoyan/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+} // Вариант Николая Fargard'а Селезнева
+// for (const heart of hearts) {
+//     heart.style.backgroundColor = 'green';
+// }
+},{}],"C:/Users/Asmadeus/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -163,7 +167,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40315" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56107" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -339,5 +343,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["C:/Users/karpoyan/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js","js/script.js"], null)
+},{}]},{},["C:/Users/Asmadeus/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/script.js"], null)
 //# sourceMappingURL=/script.d573be0b.js.map
