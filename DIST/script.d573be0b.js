@@ -117,56 +117,43 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/script.js":[function(require,module,exports) {
-'use strict';
+})({"img/bg.jpg":[function(require,module,exports) {
+module.exports = "/bg.c04a5f46.jpg";
+},{}],"js/script.js":[function(require,module,exports) {
+"use strict";
 
-var box = document.getElementById('box');
-var btns = document.getElementsByTagName('button');
-var circles = document.getElementsByClassName('circle');
-var wrapper = document.querySelector('.wrapper');
-var hearts = wrapper.querySelectorAll('.heart'); // Возвращает все элементы которые попадают под условие поиска.
+var _bg = _interopRequireDefault(require("../img/bg.jpg"));
 
-var oneheart = wrapper.querySelector('.heart'); // Возвращает первый элемент который попадет под условие поиска.
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-box.style.cssText = 'background-color: green; width: 200px';
-btns[1].style.backgroundColor = 'green';
-btns[1].style.borderRadius = '100%';
-circles[0].style.backgroundColor = 'red';
-console.log(hearts); // for (let i = 0; i < hearts.length; i++) {
-//     hearts[i].style.backgroundColor = 'green';
-// }
-// Вариант Николая Fargard'а Селезнева
-// for (const heart of hearts) {
-//     heart.style.backgroundColor = 'green';
-// }
+/* Задания на урок:
 
-hearts.forEach(function (item) {
-  item.style.backgroundColor = 'green';
-}); // const text = document.createTextNode('Hello World!');
+1) Удалить все рекламные блоки со страницы (правая часть сайта)
 
-var div = document.createElement('div');
-div.classList.add('black'); // document.body.append(div);
+2) Изменить жанр фильма, поменять "комедия" на "драма"
 
-wrapper.append(div); // Вставляет элемент В КОНЕЦ блока
-// wrapper.appendChild(div); // Вставляет элемент В КОНЕЦ блока. УСТАРЕВШИЙ МЕТОД. НЕ ИСПОЛЬЗОВАТЬ.
-// wrapper.prepend(div); // Вставляет элемент В НАЧАЛО блока
-// hearts[1].before(div); // Вставляет элемент ПЕРЕД указаным блоком или элементом
-// wrapper.insertBefore(div, hearts[0]); // Вставить элемент ПЕРЕД указанным элементом. УСТАРЕВШИЙ МЕТОД. НЕ ИСПОЛЬЗОВАТЬ.
-// hearts[1].after(div); // Вставляет элемент ПОСЛЕ указаным блоком или элементом
-// circles[0].remove(); // Удаляет указанный элемент.
-// wrapper.removeChild(hearts[1]); // Удаляет указанный элемент. ПЕРЕД указанным элементом. УСТАРЕВШИЙ МЕТОД. НЕ ИСПОЛЬЗОВАТЬ.
-// hearts[0].replaceWith(circles[0]); // Заменят элемент А элементом Б
-// wrapper.replaceChild(circles[0], hearts[0]); //  Заменят элемент А элементом Б. УСТАРЕВШИЙ МЕТОД. НЕ ИСПОЛЬЗОВАТЬ.
+3) Изменить задний фон постера с фильмом на изображение "bg.jpg". Оно лежит в папке img.
+Реализовать только при помощи JS
 
-div.innerHTML = "<h1>Hello World!</h1>"; // Записывает ТЕКСТ или HTML структуру
-// div.textContent = 'Hello';  // Записывает ТОЛЬКО ТЕКСТ
+4) Список фильмов на странице сформировать на основании данных из этого JS файла.
+Отсортировать их по алфавиту 
 
-div.insertAdjacentHTML('beforebegin', '<h2>Hello</h2>'); //
-// beforebegin - Вставляет HTML код ПЕРЕД элементом
-// afterbegin - Вставляет HTML код в НАЧАЛО элемента
-// beforeend - Вставляет HTML код КОНЕЦ элемента
-// afterend - Вставляет HTML код в ПОСЛЕ элемента
-},{}],"C:/Users/Asmadeus/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+5) Добавить нумерацию выведенных фильмов */
+var movieDB = {
+  movies: ["Логан", "Лига справедливости", "Ла-ла лэнд", "Одержимость", "Скотт Пилигрим против..."]
+};
+var adv = document.querySelectorAll('.promo__adv img');
+var poster = document.querySelector('.promo__bg');
+var genre = poster.querySelector('.promo__genre');
+adv.forEach(function (item) {
+  item.remove();
+});
+genre.textContent = 'ДРАМА';
+poster.style.backgroundImage = _bg.default;
+movieDB.movies.sort(function (a, b) {
+  return a - b;
+});
+},{"../img/bg.jpg":"img/bg.jpg"}],"C:/Users/Asmadeus/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -194,7 +181,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53778" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58407" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

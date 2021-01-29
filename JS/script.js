@@ -1,61 +1,41 @@
-'use strict';
+/* Задания на урок:
 
-const box = document.getElementById('box');
-const btns = document.getElementsByTagName('button');
-const circles = document.getElementsByClassName('circle');
-const wrapper = document.querySelector('.wrapper');
-const hearts = wrapper.querySelectorAll('.heart'); // Возвращает все элементы которые попадают под условие поиска.
-const oneheart = wrapper.querySelector('.heart'); // Возвращает первый элемент который попадет под условие поиска.
+1) Удалить все рекламные блоки со страницы (правая часть сайта)
 
-box.style.cssText = ('background-color: green; width: 200px');
+2) Изменить жанр фильма, поменять "комедия" на "драма"
 
-btns[1].style.backgroundColor = 'green';
-btns[1].style.borderRadius = '100%';
-circles[0].style.backgroundColor = 'red';
+3) Изменить задний фон постера с фильмом на изображение "bg.jpg". Оно лежит в папке img.
+Реализовать только при помощи JS
 
-console.log(hearts);
+4) Список фильмов на странице сформировать на основании данных из этого JS файла.
+Отсортировать их по алфавиту 
 
-// for (let i = 0; i < hearts.length; i++) {
-//     hearts[i].style.backgroundColor = 'green';
-// }
+5) Добавить нумерацию выведенных фильмов */
 
-// Вариант Николая Fargard'а Селезнева
-// for (const heart of hearts) {
-//     heart.style.backgroundColor = 'green';
-// }
+import imageURL from '../img/bg.jpg'
 
-hearts.forEach(item => {
-    item.style.backgroundColor = 'green';
+const movieDB = {
+    movies: [
+        "Логан",
+        "Лига справедливости",
+        "Ла-ла лэнд",
+        "Одержимость",
+        "Скотт Пилигрим против..."
+    ]
+};
+
+const adv = document.querySelectorAll('.promo__adv img');
+const poster = document.querySelector('.promo__bg');
+const genre = poster.querySelector('.promo__genre');
+const filmlist = document.querySelector('.promo__interactive-list');
+
+
+adv.forEach(item => {
+    item.remove();
 });
-// const text = document.createTextNode('Hello World!');
 
-const div = document.createElement('div');
-div.classList.add('black');
-// document.body.append(div);
+genre.textContent = 'ДРАМА';
 
-wrapper.append(div); // Вставляет элемент В КОНЕЦ блока
-// wrapper.appendChild(div); // Вставляет элемент В КОНЕЦ блока. УСТАРЕВШИЙ МЕТОД. НЕ ИСПОЛЬЗОВАТЬ.
+poster.style.backgroundImage = imageURL;
 
-// wrapper.prepend(div); // Вставляет элемент В НАЧАЛО блока
-
-// hearts[1].before(div); // Вставляет элемент ПЕРЕД указаным блоком или элементом
-// wrapper.insertBefore(div, hearts[0]); // Вставить элемент ПЕРЕД указанным элементом. УСТАРЕВШИЙ МЕТОД. НЕ ИСПОЛЬЗОВАТЬ.
-
-// hearts[1].after(div); // Вставляет элемент ПОСЛЕ указаным блоком или элементом
-
-// circles[0].remove(); // Удаляет указанный элемент.
-// wrapper.removeChild(hearts[1]); // Удаляет указанный элемент. ПЕРЕД указанным элементом. УСТАРЕВШИЙ МЕТОД. НЕ ИСПОЛЬЗОВАТЬ.
-
-// hearts[0].replaceWith(circles[0]); // Заменят элемент А элементом Б
-// wrapper.replaceChild(circles[0], hearts[0]); //  Заменят элемент А элементом Б. УСТАРЕВШИЙ МЕТОД. НЕ ИСПОЛЬЗОВАТЬ.
-
-div.innerHTML = "<h1>Hello World!</h1>"; // Записывает ТЕКСТ или HTML структуру
-
-// div.textContent = 'Hello';  // Записывает ТОЛЬКО ТЕКСТ
-
-div.insertAdjacentHTML('beforebegin', '<h2>Hello</h2>'); //
-// beforebegin - Вставляет HTML код ПЕРЕД элементом
-// afterbegin - Вставляет HTML код в НАЧАЛО элемента
-// beforeend - Вставляет HTML код КОНЕЦ элемента
-// afterend - Вставляет HTML код в ПОСЛЕ элемента
-
+filmlist.innerHTML = '';
