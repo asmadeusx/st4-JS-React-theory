@@ -184,7 +184,7 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":"C:/Users/karpoyan/AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-url.js"}],"CSS/style.scss":[function(require,module,exports) {
+},{"./bundle-url":"C:/Users/karpoyan/AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-url.js"}],"css/style.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -217,7 +217,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33091" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40315" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -394,4 +394,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["C:/Users/karpoyan/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/style.01d39460.js.map
+//# sourceMappingURL=/style.78032849.js.map
