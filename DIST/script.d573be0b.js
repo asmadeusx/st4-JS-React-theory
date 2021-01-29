@@ -123,22 +123,49 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 var box = document.getElementById('box');
 var btns = document.getElementsByTagName('button');
 var circles = document.getElementsByClassName('circle');
-var hearts = document.querySelectorAll('.heart'); // Возвращает все элементы которые попадают под условие поиска.
+var wrapper = document.querySelector('.wrapper');
+var hearts = wrapper.querySelectorAll('.heart'); // Возвращает все элементы которые попадают под условие поиска.
 
-var oneheart = document.querySelector('.heart'); // Возвращает первый элемент который попадет под условие поиска.
+var oneheart = wrapper.querySelector('.heart'); // Возвращает первый элемент который попадет под условие поиска.
 
 box.style.cssText = 'background-color: green; width: 200px';
 btns[1].style.backgroundColor = 'green';
 btns[1].style.borderRadius = '100%';
 circles[0].style.backgroundColor = 'red';
-console.log(hearts);
-
-for (var i = 0; i < hearts.length; i++) {
-  hearts[i].style.backgroundColor = 'green';
-} // Вариант Николая Fargard'а Селезнева
+console.log(hearts); // for (let i = 0; i < hearts.length; i++) {
+//     hearts[i].style.backgroundColor = 'green';
+// }
+// Вариант Николая Fargard'а Селезнева
 // for (const heart of hearts) {
 //     heart.style.backgroundColor = 'green';
 // }
+
+hearts.forEach(function (item) {
+  item.style.backgroundColor = 'green';
+}); // const text = document.createTextNode('Hello World!');
+
+var div = document.createElement('div');
+div.classList.add('black'); // document.body.append(div);
+
+wrapper.append(div); // Вставляет элемент В КОНЕЦ блока
+// wrapper.appendChild(div); // Вставляет элемент В КОНЕЦ блока. УСТАРЕВШИЙ МЕТОД. НЕ ИСПОЛЬЗОВАТЬ.
+// wrapper.prepend(div); // Вставляет элемент В НАЧАЛО блока
+// hearts[1].before(div); // Вставляет элемент ПЕРЕД указаным блоком или элементом
+// wrapper.insertBefore(div, hearts[0]); // Вставить элемент ПЕРЕД указанным элементом. УСТАРЕВШИЙ МЕТОД. НЕ ИСПОЛЬЗОВАТЬ.
+// hearts[1].after(div); // Вставляет элемент ПОСЛЕ указаным блоком или элементом
+// circles[0].remove(); // Удаляет указанный элемент.
+// wrapper.removeChild(hearts[1]); // Удаляет указанный элемент. ПЕРЕД указанным элементом. УСТАРЕВШИЙ МЕТОД. НЕ ИСПОЛЬЗОВАТЬ.
+// hearts[0].replaceWith(circles[0]); // Заменят элемент А элементом Б
+// wrapper.replaceChild(circles[0], hearts[0]); //  Заменят элемент А элементом Б. УСТАРЕВШИЙ МЕТОД. НЕ ИСПОЛЬЗОВАТЬ.
+
+div.innerHTML = "<h1>Hello World!</h1>"; // Записывает ТЕКСТ или HTML структуру
+// div.textContent = 'Hello';  // Записывает ТОЛЬКО ТЕКСТ
+
+div.insertAdjacentHTML('beforebegin', '<h2>Hello</h2>'); //
+// beforebegin - Вставляет HTML код ПЕРЕД элементом
+// afterbegin - Вставляет HTML код в НАЧАЛО элемента
+// beforeend - Вставляет HTML код КОНЕЦ элемента
+// afterend - Вставляет HTML код в ПОСЛЕ элемента
 },{}],"C:/Users/Asmadeus/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -167,7 +194,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56107" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53778" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
