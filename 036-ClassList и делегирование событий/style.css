@@ -1,0 +1,22 @@
+.blue{
+    background-color: blue;
+}
+.red{
+    background-color: red;
+}
+.test{
+    border-radius: 100%;
+}
+.btn-block{
+    position: absolute;
+    background-color: grey;
+    height: 100px;
+    width: auto;
+}
+button{
+    background-color: yellow;
+    position: relative;
+    margin: 5px 5px;
+    height: 50px;
+    width: 50px;
+}

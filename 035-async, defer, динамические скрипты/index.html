@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+    <!-- <script async src="script.js"></script> -->
+    <!-- 
+        defer - 
+        этот артибут говорит браузеру 
+        продолжать обрабатывать страницу 
+        и загружать скрипт в фоновом режиме,
+        и затем его запустить. 
+        Скрипты с defer не блокируют страницу.
+        Выполнится скрипт после полной загрузки верстки 
+    -->
+    
+    <!-- <script async src="test.js"></script> -->
+    <!-- 
+        Async -
+        1. страница не ждет такие скрипты. 
+        Содержимое просто обрабатывается и отображается.
+        2. событие DOMContentLoaded и Async скрипты не
+        ждут друг-друга.
+    -->
+    <script src="script.js"></script>
+
+    <p>Hello World!</p>
+    <p>Second Message</p>
+
+    
+</body>
+</html>
