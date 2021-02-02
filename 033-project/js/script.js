@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "Лига справедливости",
             "Ла-ла лэнд",
             "Одержимость",
-            "Скотт Пилигрим против всех"
+            "Скотт Пилигрим против всех",
         ]
     };
 
@@ -37,48 +37,64 @@ document.addEventListener('DOMContentLoaded', () => {
     const addInput = addForm.querySelector('.adding__input');
     const checkBox = addForm.querySelector('[type="checkbox"]');
 
-    addForm.addEventListener('submit', (event) => {
+    addForm.addEventListener('submit', (event) => { // Событие submit - подтверждение введенной формы.
         event.preventDefault(); // Предотвращает перезагрузку страницы
-        const newFilm = addInput.value; // Получает введенное значение
-        const favorite = checkBox.checked; // Проверяет поставлена ли галочка
-        movieDB.movies.push(newFilm);
-        sortArr(movieDB.movies); // Сортировка массива по алфавиту
-    });
+        let newFilm = addInput.value; // Получает введенное значение
+        const favorite = checkBox.checked; // Получает статус галочки
 
+        if (newFilm) { // Проверка на пустое поле. Если Поле Заполнено выполняет действия. Пустое-Ничего не происходит
+
+            if (newFilm.length > 21) {
+                newFilm = `${newFilm.substring(0, 21)}...`;
+            }
+
+            if (favorite) {
+                console.log(`Добавлен любимый фильм! Это ${newFilm}`);
+            }
+
+            movieDB.movies.push(newFilm); // Добавить введеное название фильма в конец массива movies
+            sortArr(movieDB.movies); // Сортировка массива по алфавиту
+            createMovieList(movieDB.movies, movieList); // Генерирует список заново
+        }
+        event.target.reset(); // Очищает поле ввода
+    });
     const makeChanges = () => {
         genre.textContent = 'ДРАМА';
         poster.style.backgroundImage = 'url("./img/bg.jpg")';
     };
-
-    const deleteAdv = (arr) => {
+    const deleteAdv = (arr) => { // Удаление банеров
         arr.forEach(item => {
             item.remove();
         });
     };
-
-    const sortArr = (arr) => {
+    const sortArr = (arr) => { // Сортировка массива по алфавиту
         arr.sort();
     };
-
     function createMovieList(films, parent) {
         parent.innerHTML = ''; // Очистка списка
-
+        // Формирование списка с 0.
         films.forEach((filmName, i) => {
-            let a;
-            if (filmName.length > 21) {
-                a = filmName.substr(0, 21) + ' ...';
-            } else {
-                a = filmName;
-            }
             parent.innerHTML += `
-        <li class="promo__interactive-item">${i+1}. ${a}
-            <div class="delete"></div>
-        </li>
-        `;
+            <li class="promo__interactive-item">${i+1}. ${filmName} 
+                <div class="delete"></div>
+            </li>
+            `; // Добавление в HTML элементов списка. Номер фильма и название фильма
         });
+
+        document.querySelectorAll('.delete').forEach((btn, i) => {
+            btn.addEventListener('click', () => {
+                btn.parentElement.remove(); // Удаление родительского элемента
+                films.splice(i, 1); // Удаление элемента из массива
+                createMovieList(films, parent); // Рекурсивный вызов функции самой себя для пересборки списка фильмов
+            });
+        });
+        sortArr(films);
+        // На все элементы с классом .delete (кнопка удаления), вешается проверка события Клик. 
+        // По клику Родительский элемент(!) элемента с классом .delete удаляется.
+        // так же удаляется указанный элемент из массива
+        // Рекурсивный вызов функции самой себя для пересборки списка фильмов
     }
 
-    sortArr(movieDB.movies);
     makeChanges();
     deleteAdv(adv);
     createMovieList(movieDB.movies, movieList);
