@@ -1,12 +1,12 @@
 'use strict';
 
 // 038 - tabs. Переключение между "закладками"
-
 // 041 - Создаем таймер обратного отсчета на сайте
+// 043 - Создаем Модальное окно "Связаться с нами"
 
 document.addEventListener('DOMContentLoaded', () => {
-    
-    //#region - TABS
+
+    //#region - TABS                - 038
     const tabs = document.querySelectorAll('.tabheader__item');
     const tabsContent = document.querySelectorAll('.tabcontent');
     const tabsParent = document.querySelector('.tabheader__items');
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     tabsParent.addEventListener('click', (event) => {
         const target = event.target;
-        
+
         if (target && target.classList.contains('tabheader__item')) {
             tabs.forEach((item, i) => {
                 if (target == item) {
@@ -43,12 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     //#endregion
-    //#region - TIMER
+    //#region - TIMER               - 041
 
     const deadline = '2021-02-10';
 
     function getTimeRemaining(endtime) {
-        const t = Date.parse(endtime) - Date.parse(new Date()); 
+        const t = Date.parse(endtime) - Date.parse(new Date());
         // Разница между Концом акции и текущей датой в милисекундах
 
         // 1. 1000 милисекунд умножаем на 60 - кол-во милисекунд в 1 минуте
@@ -57,10 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // В одних сутках 86 400 000 милисекунд
         // Math.floor - Округление до ближайшего целого.
         // % - возвращает остаток от деления
-        const days = Math.floor( t / ( 1000 * 60 * 60 * 24 ) ); // Кол-во дней до окончания акции
-        const hours = Math.floor( ( t / ( 1000 * 60 * 60 ) ) % 24 ); // Кол-во часов до окончания акции. 
-        const minutes = Math.floor( ( t / ( 1000 * 60 ) ) % 60 ); // Кол-во минут до окончания акции.
-        const seconds = Math.floor( ( t / 1000 ) % 60 ); // Кол-во секунд до окончания акции.
+        const days = Math.floor(t / (1000 * 60 * 60 * 24)); // Кол-во дней до окончания акции
+        const hours = Math.floor((t / (1000 * 60 * 60)) % 24); // Кол-во часов до окончания акции. 
+        const minutes = Math.floor((t / (1000 * 60)) % 60); // Кол-во минут до окончания акции.
+        const seconds = Math.floor((t / 1000) % 60); // Кол-во секунд до окончания акции.
 
         return {
             'total': t,
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return num;
         }
     }
-    
+
     function setClock(selector, endtime) {
         const timer = document.querySelector(selector);
         const days = timer.querySelector('#days');
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const timeInterval = setInterval(updateClock, 1000);
 
         // Устраняет "моргание/прогрузку" таймера при обновлении страницы
-        updateClock(); 
+        updateClock();
 
         function updateClock() {
             const t = getTimeRemaining(endtime);
@@ -104,5 +104,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setClock('.timer', deadline);
     //#endregion
+    //#region - MODAL WINDOW        - 043
 
+    // получить все элементы с атрибутом data-modal в псевдомассив
+    const modalTrigger = document.querySelectorAll('[data-modal]');
+    // получить элемент с атрибутом data-close
+    const modalClosebtn = document.querySelector('[data-close]');
+    // само модальное окно
+    const modal = document.querySelector('.modal');
+
+    // Функция открытия/закрытия модального окна.
+    function modalShowhide(add, remove, overflow) {
+        modal.classList.add(add);
+        modal.classList.remove(remove);
+        document.body.style.overflow = overflow;
+    }
+
+    function modalShow() {
+        modal.classList.add('show');
+        modal.classList.remove('hide');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function modalHide() {
+        modal.classList.add('hide');
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+
+    // Вызвать модальное окно по клику всех элементах с атрибутом data-modal и заблокировать прокрутку
+    modalTrigger.forEach(item => {
+        item.addEventListener('click', modalShow);
+    });
+
+    // Закрыть модальное окно нажатием элемента "Крестик" с атрибутом data-close и разблокировать прокрутку
+    modalClosebtn.addEventListener('click', modalHide);
+
+    // Если кликнули на затемненную область вокруг модального окна - закрыть мод. окно. и разблокировать прокрутку
+    modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modalHide();
+        }
+    });
+
+    // Если нажата клавиша Esc на клавиатуре - закрыть мод. окно и разблокировать прокрутку
+    // document.onkeydown = function (event) {
+    //     if (event.keyCode == 27) {
+    //         modalHide();
+    //     }
+    // };
+
+    document.addEventListener('keydown', (event) => {
+        if (event.Code === 'Esapce') {
+            modalHide();
+        }
+    });
+
+    //#endregion
 });
