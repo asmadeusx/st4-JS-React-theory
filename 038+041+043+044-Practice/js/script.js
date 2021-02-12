@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //#endregion
     //#region - TIMER               - 041
 
-    const deadline = '2021-02-10';
+    const deadline = '2021-02-20';
 
     function getTimeRemaining(endtime) {
         const t = Date.parse(endtime) - Date.parse(new Date());
@@ -113,17 +113,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // само модальное окно
     const modal = document.querySelector('.modal');
 
-    // Функция открытия/закрытия модального окна.
-    function modalShowhide(add, remove, overflow) {
-        modal.classList.add(add);
-        modal.classList.remove(remove);
-        document.body.style.overflow = overflow;
-    }
-
     function modalShow() {
         modal.classList.add('show');
         modal.classList.remove('hide');
         document.body.style.overflow = 'hidden';
+        clearInterval(modalTimerid);
     }
 
     function modalHide() {
@@ -153,6 +147,19 @@ document.addEventListener('DOMContentLoaded', () => {
             modalHide();
         }
     });
+
+    // Вызов модального окна через 30 секунд (30000 милисекунд) после открытия страницы.
+    const modalTimerid = setTimeout(modalShow, 30000);
+
+    // Вызов модального окна когда стрианицу пролистали до самого низа
+    // Появляется один раз, затем обработчик события удаляется
+    function showModalByScroll() {
+        if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight) {
+            modalShow();
+            window.removeEventListener('scroll', showModalByScroll);
+        } 
+    }
+    window.addEventListener('scroll', showModalByScroll);
 
     //#endregion
 });
