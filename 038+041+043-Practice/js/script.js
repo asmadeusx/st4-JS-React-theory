@@ -148,14 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Если нажата клавиша Esc на клавиатуре - закрыть мод. окно и разблокировать прокрутку
-    // document.onkeydown = function (event) {
-    //     if (event.keyCode == 27) {
-    //         modalHide();
-    //     }
-    // };
-
     document.addEventListener('keydown', (event) => {
-        if (event.Code === 'Esapce') {
+        if (event.code === "Escape" && modal.classList.contains('show')) {
             modalHide();
         }
     });
