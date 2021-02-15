@@ -3,6 +3,7 @@
 // 038 - tabs. Переключение между "закладками"
 // 041 - Создаем таймер обратного отсчета на сайте
 // 043 - Создаем Модальное окно "Связаться с нами"
+// 048 - Классы
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -157,9 +158,82 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight) {
             modalShow();
             window.removeEventListener('scroll', showModalByScroll);
-        } 
+        }
     }
     window.addEventListener('scroll', showModalByScroll);
 
+    //#endregion
+    //#region - CLASSES             - 048
+    const menuItemSrcs = [
+        'img/tabs/vegy.jpg',
+        'img/tabs/elite.jpg',
+        'img/tabs/post.jpg'
+    ];
+    const menuItemSrcAlts = [
+        'vegy',
+        'elite',
+        'post'
+    ];
+    const menuItemTitle = [
+        '"Меню "Фитнес"',
+        '"Меню “Премиум"',
+        '"Меню "Постное"'
+    ];
+    const menuItemDescr = [
+        'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
+        'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
+        'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.'
+    ];
+    const menuItemPrice = [
+        9,
+        12,
+        10
+    ];
+
+    class MenuCard {
+        constructor(src, alt, title, descr, price, parentSelector) {
+            this.src = src;
+            this.alt = alt;
+            this.title = title;
+            this.descr = descr;
+            this.price = price;
+            this.parent = document.querySelector(parentSelector);
+            this.transfer = 27; // Курс Доллара к Гривнам
+            this.changeToUAH(); // Вызов функции на преобразование цены
+        }
+
+        changeToUAH() {
+            this.price = this.price * this.transfer; // Преобразование из Доллара в Гривны
+        }
+
+        render() {
+            const element = document.createElement('div');
+            element.innerHTML = `
+            <div class="menu__item">
+                <img src=${this.src} alt=${this.alt}>
+                <h3 class="menu__item-subtitle">${this.title}</h3>
+                <div class="menu__item-descr">${this.descr}</div>
+                <div class="menu__item-divider"></div>
+                <div class="menu__item-price">
+                    <div class="menu__item-cost">Цена:</div>
+                    <div class="menu__item-total"><span>${this.price}</span> грн/день</div>
+                </div>
+            </div>
+            `;
+            this.parent.append(element);
+        }
+    }
+
+    for (let i = 0; i < 3; i++) {
+        new MenuCard(
+            menuItemSrcs[i],
+            menuItemSrcAlts[i],
+            menuItemTitle[i],
+            menuItemDescr[i],
+            menuItemPrice[i],
+            '.menu .container'
+        ).render();
+    }
+    
     //#endregion
 });
